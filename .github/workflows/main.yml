@@ -23,6 +23,14 @@ jobs:
 
       - name: Preparar Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          accept-android-sdk-licenses: false
+
+      - name: Aceptar licencias del SDK
+        shell: bash
+        run: |
+          set +o pipefail
+          yes | sdkmanager --licenses
 
       - name: Instalar SDK 35
         run: sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
